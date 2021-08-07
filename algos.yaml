@@ -59,9 +59,9 @@ random-xs:
       run-groups:
         base:
           args: |
-              [{"R":100, "L":100, "B":50, "M":110}]
+              [{"R":32, "L":20, "B":.0005, "M":1}]
           query-args: |
-             [{"Ls":10, "BW":2, "T":16}]
+             [{"Ls":10, "BW":2, "T":4}]
 deep-10M:
     faiss-t1:
       docker-tag: billion-scale-benchmark-faissconda
