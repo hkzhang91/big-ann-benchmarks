@@ -8,7 +8,7 @@ any:
         base:
           args: [[1024,2048,4096,8192]]
           query-args: [[1, 5, 10, 50, 100, 200]]
-random-range-xs:
+random-rangeaxs:
     faiss-t1:
       docker-tag: billion-scale-benchmark-faissconda
       module: benchmark.algorithms.faiss_t1
@@ -61,7 +61,7 @@ random-xs:
           args: |
               [{"R":32, "L":20, "B":.0005, "M":1}]
           query-args: |
-             [{"Ls":10, "BW":2, "T":4}]
+              [{"Ls":10, "BW":2, "T":4}]
 deep-10M:
     faiss-t1:
       docker-tag: billion-scale-benchmark-faissconda
@@ -346,7 +346,7 @@ deep-10M:
           args: |
               [{"R":100, "L":100, "B":0.3, "M":15}]
           query-args: |
-             [{"Ls":50, "BW":4, "T":16}]
+              [{"Ls":50, "BW":4, "T":16}]
 msturing-1M:
    diskann-t2:
       docker-tag: billion-scale-benchmark-diskann
@@ -358,4 +358,4 @@ msturing-1M:
           args: |
               [{"R":50, "L":50, "B":0.03, "M":1}]
           query-args: |
-             [{"Ls":50, "BW":4, "T":16}]
+              [{"Ls":50, "BW":4, "T":16}]
