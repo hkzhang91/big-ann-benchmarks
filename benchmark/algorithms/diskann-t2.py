@@ -12,8 +12,8 @@ class Diskann(BaseANN):
     def __init__(self, metric, index_params):
         if (index_params.get("R")==None):
             print("Error: missing parameter R")
-            return            
-        if (index_params.get("L")==None): 
+            return
+        if (index_params.get("L")==None):
             print("Error: missing parameter L")
             return
         if (index_params.get("B")==None):
@@ -61,7 +61,7 @@ class Diskann(BaseANN):
 
         print("Set build-time number of threads:", buildthreads)
         diskannpy.omp_set_num_threads(buildthreads)
- 
+
         metric_type = (
                 diskannpy.L2 if ds.distance() == "euclidean" else
                 1/0
@@ -69,7 +69,7 @@ class Diskann(BaseANN):
 
         index_dir = self.create_index_dir(ds)
         self.index_path = os.path.join(index_dir, self.index_name())
-        
+
         if not hasattr(self, 'index'):
             self.index = diskannpy.DiskANNFloatIndex()
 
@@ -90,7 +90,16 @@ class Diskann(BaseANN):
         index_dir = self.create_index_dir(ds)
         index_path = os.path.join(index_dir, self.index_name())
 
-        self.index = diskannpy.DiskANNFloatIndex()
+        if ds.dtype = "float32":
+            self.index = diskannpy.DiskANNFloatIndex()
+        elif ds.dtype = "int8":
+            self.index = diskannpy.DiskANNInt8Index()
+        elif ds.dtype = "uint8":
+            self.index = diskannpy.DiskANNUInt8Index()
+        else:
+            print ("Unsupported data type.")
+            return False
+
         if (self.index.load_index(index_path, diskannpy.omp_get_max_threads()) == 0):
             print ("Load index success.")
             return True
@@ -100,7 +109,6 @@ class Diskann(BaseANN):
     def query(self, X, k):
         """Carry out a batch query for k-NN of query set X."""
         nq, dim = (np.shape(X))
-        
         self.res, self.query_dists = self.index.batch_search_numpy_input(X, dim, nq, k, self.Ls, self.BW, self.threads)
 
     def range_query(self, X, radius):
