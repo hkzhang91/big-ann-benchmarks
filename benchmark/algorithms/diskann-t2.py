@@ -90,11 +90,11 @@ class Diskann(BaseANN):
         index_dir = self.create_index_dir(ds)
         index_path = os.path.join(index_dir, self.index_name())
 
-        if ds.dtype = "float32":
+        if ds.dtype == "float32":
             self.index = diskannpy.DiskANNFloatIndex()
-        elif ds.dtype = "int8":
+        elif ds.dtype == "int8":
             self.index = diskannpy.DiskANNInt8Index()
-        elif ds.dtype = "uint8":
+        elif ds.dtype == "uint8":
             self.index = diskannpy.DiskANNUInt8Index()
         else:
             print ("Unsupported data type.")
