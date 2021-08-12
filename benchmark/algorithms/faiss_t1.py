@@ -261,7 +261,7 @@ class Faiss(BaseANN):
         self.ps.initialize(self.index)
 
     def load_index(self, dataset):
-        if not os.path.exists(self.index_name(dataset)):
+        if not (os.path.exists(self.index_name(dataset)):
             if 'url' not in self._index_params:
                 return False
 

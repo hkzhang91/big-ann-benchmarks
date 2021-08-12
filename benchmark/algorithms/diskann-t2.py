@@ -100,6 +100,15 @@ class Diskann(BaseANN):
             print ("Unsupported data type.")
             return False
 
+        if not (os.path.exists(index_dir)):
+            if 'url' not in self._index_params:
+                return False
+
+            print('Downloading index in background. This can take a while.')
+            download_accelerated(self._index_params['url'], self.index_name(dataset), quiet=True)
+
+        print("Loading index")
+
         if (self.index.load_index(index_path, diskannpy.omp_get_max_threads()) == 0):
             print ("Load index success.")
             return True
