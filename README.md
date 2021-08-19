@@ -2,20 +2,15 @@
 
 <http://big-ann-benchmarks.com/>
 
-## Install
+## Basic idea
 
-The only prerequisite is Python (tested with 3.6) and Docker. Works with newer versions of Python as well but probably requires an updated `requirements.txt` on the host. (Suggestion: copy `requirements.txt` to `requirements${PYTHON_VERSION}.txt` and remove all fixed versions. `requirements.txt` has to be kept for the docker containers.)
+we propose a new network structure calledLearnable Compression Network with Transformer (LCNT)to  compress  the  feature  into  a  low  dimensional  space,  and an anisotropic neighborhood relationship preserving loss thatfocuses on maintaining distances of point pairs that are close in original feature space. For PQ related approaches, using LCNT improves search speed and accuracysignificantly. 
 
-1. Clone the repo.
-2. Run `pip install -r requirements.txt` (Use `requirements_py38.txt` if you have Python 3.8.)
-3. Install docker by following instructions [here](https://docs.docker.com/engine/install/ubuntu/).
-You might also want to follow the post-install steps for running docker in non-root user mode.
-3. Run `python install.py` to build all the libraries inside Docker containers.
+## Dependences
 
-## Storing Data
-
-The framework assumes that all data is stored in `data/`.
-Please use a symlink if your datasets and indices are supposed to be stored somewhere else.
+Pytorch > 1.2.0
+Cuda 10.2 (optional)
+Faiss
 
 ## Data sets
 
